@@ -1,22 +1,33 @@
 import axios from "axios";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [regNum, setRegNum] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     axios.post("http://localhost:8080/api/login", {
-      email,
+      regNum,
       password
     })
+
     .then(res => {
-      console.log(res.data);
-      setMessage("Login successful ✅");
+      // console.log(res.data);
+      alert("Login successful ✅");
+      // console.log(res.status);
+      if(res.status === 200){
+        localStorage.setItem("regNum", res.data.regNum);
+        localStorage.setItem("token", "logged-in");
+        navigate("/dashboard");
+      }
+
     })
+
     .catch(err => {
-      setMessage("Invalid email or password ❌");
+      alert("Invalid email or password ❌");
     });
   };
 
@@ -26,9 +37,9 @@ function Login() {
 
       <input 
         type="text"
-        placeholder="Email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
+        placeholder="Register Number"
+        value={regNum}
+        onChange={e => setRegNum(e.target.value)}
       />
 
       <br /><br />
@@ -43,7 +54,6 @@ function Login() {
       <br /><br />
 
       <button onClick={handleLogin}>Login</button>
-
       <p>{message}</p>
     </div>
   );
