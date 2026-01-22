@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
+import DashboardLayout from "../layouts/DashboardLayout";
+
 function Profile(){
     const [student, setStudent] = useState(null);
     const regNum = localStorage.getItem("regNum");
@@ -13,6 +13,7 @@ function Profile(){
             }
         })
         .then(res=>{
+            console.log(res.data);
             setStudent(res.data);
         })
         .catch(err=>{
@@ -21,10 +22,13 @@ function Profile(){
     },[])
     return(
         <div>
-            <p>{student?.name}</p>
-            <p>{student?.regNum}</p>
-            <p>{student?.surName}</p>
-            <p>{student?.branch}</p>
+            <DashboardLayout />
+            <div className="profile-container">
+                <p>{student?.name}</p>
+                <p>{student?.regNum}</p>
+                <p>{student?.surName}</p>
+                <p>{student?.branch}</p>
+            </div>
         </div>
     )
 }

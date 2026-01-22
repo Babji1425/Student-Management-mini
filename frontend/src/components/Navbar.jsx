@@ -1,10 +1,28 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Navbar({ setSidebarOpen }) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const regNum = localStorage.getItem("regNum");
+  const [studentName, setStudentName] = useState("");
+
+
+  useEffect(()=>{
+    axios.get("http://localhost:8080/api/profile/me", {
+      headers:{
+        "STUDENT-REG-NUM" : regNum
+      }
+    })
+    .then(res=>{
+      console.log(res.data.name);
+      setStudentName(res.data.name);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  }, [])
 
   const logout = () => {
     localStorage.clear();
@@ -18,7 +36,7 @@ function Navbar({ setSidebarOpen }) {
       </button>
 
       <h2 style={{ marginBottom: "20px" }} className="welcome-text">
-        Welcome back, <span style={{ color: "#2563eb" }}>{regNum}</span> 👋
+        Welcome back, <span style={{ color: "#2563eb" }}>{studentName}</span> 👋
       </h2>
 
       <div className="profile-wrapper">

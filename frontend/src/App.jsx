@@ -3,7 +3,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-import "boxicons/css/boxicons.min.css";
+// import "boxicons/css/boxicons.min.css";
 import Profile from "./pages/Profile";
 
 
@@ -14,7 +14,7 @@ function App() {
       <Route path="/signup" element={<Signup />} />
 
       <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile" element={<ProtectedRoute> <Profile /> </ProtectedRoute>} />
     </Routes>
   );
 }

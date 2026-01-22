@@ -25,30 +25,30 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Student Login</h2>
+    <div className="login-container">
+          <div className="login-card">
+        <h2>Student Login</h2>
+        
+        <input
+          placeholder="Register Number"
+          value={regNum}
+          onChange={(e) => setRegNum(e.target.value)}
+        />
 
-      <input
-        placeholder="Register Number"
-        value={regNum}
-        onChange={(e) => setRegNum(e.target.value)}
-      />
 
-      <br /><br />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
 
-      <br /><br />
+        <button onClick={handleLogin}>Login</button>
 
-      <button onClick={handleLogin}>Login</button>
+        <p style={{ color: "red" }}>{message}</p>
 
-      <p style={{ color: "red" }}>{message}</p>
-
+      </div>
     </div>
   );
 }
