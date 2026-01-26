@@ -16,7 +16,6 @@ function Dashboard() {
   }, []);
 
   return (
-    <DashboardLayout>
       <div className="cards">
         {/* Attendance Card */}
         <div className="card attendance-card">
@@ -51,7 +50,6 @@ function Dashboard() {
           <p>View</p>
         </div>
       </div>
-    </DashboardLayout>
   );
 
 

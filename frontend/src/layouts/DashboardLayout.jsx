@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import "../styles/dashboard.css";
 
-function DashboardLayout({ children }) {
+function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -12,7 +13,9 @@ function DashboardLayout({ children }) {
 
       <div className="main-content">
         <Navbar setSidebarOpen={setSidebarOpen} />
-        <div className="dashboard-content">{children}</div>
+        <div className="dashboard-content">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

@@ -3,8 +3,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-// import "boxicons/css/boxicons.min.css";
 import Profile from "./pages/Profile";
+import DashboardLayout from "./layouts/DashboardLayout";
 
 
 function App() {
@@ -12,9 +12,10 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-
-      <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
-      <Route path="/profile" element={<ProtectedRoute> <Profile /> </ProtectedRoute>} />
+        <Route element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute> <Profile /> </ProtectedRoute>} />
+        </Route>
     </Routes>
   );
 }
